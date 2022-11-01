@@ -1,44 +1,33 @@
-# <b>Задание 10</b>
+# <b>Задание 11</b>
 
-В данном упражнении вам предстоит решить уже знакомую задачу классификации изображений – отделить изображения кошек от изображений собак, используя ансамбль моделей на основе стекинга.
+Ниже приведена схема марковского процесса принятия решений.
 
-В предложенном архиве (train) находится выборка, включающая в себя изображения кошек и собак (по 500 изображений). Имя каждого изображения, для удобства, имеет следующий формат: cat/dog.номер_изображения.jpg в зависимости от того, какое животное присутствует на изображении. Данная выборка используется для обучения классификатора и его оценки.
+![изображение](https://user-images.githubusercontent.com/39648424/199223551-6b2d3f47-6382-4f70-a36c-6ce2e88e1b0f.png)
 
-Следующая выборка (test) предназначена для классификации новых объектов после построения классификатора.
+Для всех состояний известны распределения вероятностей выбора доступных действий ![изображение](https://user-images.githubusercontent.com/39648424/199223633-737a70c1-fe8b-4ce3-b5d8-b8e4482043b4.png), распределения вероятностей переходов в следующие состояния ![изображение](https://user-images.githubusercontent.com/39648424/199223786-b5d0e21d-2bc9-472c-b44e-cae454e0ff1c.png) и математические ожидания ![изображение](https://user-images.githubusercontent.com/39648424/199223825-fd230a6a-24b4-4dc9-a7a1-73631228f074.png) получаемых при этом наград.
 
-Для работы с изображениями и получения их гистограмм — характеристик распределения интенсивности изображения можно воспользоваться следующей функцией и библиотекой cv2:
-```python
-def extract_histogram(image, bins=(8, 8, 8)):
-    hist = cv2.calcHist([image], [0, 1, 2], None, bins, [0, 256, 0, 256, 0, 256])
-    cv2.normalize(hist, hist)
-    return hist.flatten()
-```
-В задачах используйте реализацию алгоритмов из библиотеки sklearn:
-```python
-from sklearn.ensemble import BaggingClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.svm import LinearSVC
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import StackingClassifier
-```
-Обучите базовые алгоритмы на исходном наборе данных (предварительно закодируйте классы: Cat — 1, Dog — 0):
-+ Классификатор с мягким зазором и параметрами: ```C = 1.51```, ```random_state = 336```, остальные параметры по умолчанию;
-+ Бэггинг деревьев принятия решений. Параметры дерева: ```criterion = 'entropy'```, ```min_samples_leaf = 10```, ```max_leaf_nodes = 20```, ```random_state = 336```, остальные параметры по умолчанию. Параметры бэггинга: ```n_estimators = 21```, ```random_state = 336```;
-+ Случайный лес с параметрами: ```n_estimators = 21```, ```criterion = 'entropy'```, ```min_samples_leaf = 10```, ```max_leaf_nodes = 20```, ```random_state = 336```, остальные параметры по умолчанию.
+Для состояния ![изображение](https://user-images.githubusercontent.com/39648424/199223899-b8904930-ae16-4ab2-8165-0dd30bdb2f8e.png):
 
-Обучите метаалгоритм — логистическая регрессия: ```solver='lbfgs'```, ```random_state = 336```, остальные параметры по умолчанию. Оцените его точность при ```cv = 2```.
+![изображение](https://user-images.githubusercontent.com/39648424/199224007-b5854f4a-0a72-4626-98d3-a354d2b90f5e.png)
 
-Обучите модель стэкинга. Используйте 2-fold (```cv = 2```) кросс-валидацию для оценки. 
+Для состояния ![изображение](https://user-images.githubusercontent.com/39648424/199223923-3c832c0f-994d-4acf-846f-6a3c9dc6d601.png):
 
-<b>1. Найдите долю правильной классификации (Accuracy)</b>
+![изображение](https://user-images.githubusercontent.com/39648424/199224034-617e4427-8acc-4ac7-98b1-03a710108257.png)
 
-Выполните предсказание для изображений, указанных ниже
+Для состояния ![изображение](https://user-images.githubusercontent.com/39648424/199223949-6e7d3d65-726c-4e50-b734-f1f6f926050e.png):
 
-<b>2. Определите вероятность отнесения изображений к классу 1 с помощью обученного метаалгоритма.</b>
+![изображение](https://user-images.githubusercontent.com/39648424/199224054-e7ddf279-75c0-4ed4-ab47-046cb0d4b293.png)
 
-![изображение](https://user-images.githubusercontent.com/39648424/199206357-ed639af8-85c4-40cf-aecd-d8a4a5faba56.png)
-![изображение](https://user-images.githubusercontent.com/39648424/199206382-50f2a79c-43f6-492f-9b50-11a80a17bbaf.png)
+Для состояния ![изображение](https://user-images.githubusercontent.com/39648424/199223969-8345f3ba-f851-450c-8e40-29ed98370b28.png): 
 
+![изображение](https://user-images.githubusercontent.com/39648424/199224076-9113c474-c16a-4d73-bf1d-1b2411ee6fe8.png)
 
+Запишите уравнения Беллмана и получите значения ценности состояний, если коэффициент дисконтирования ![изображение](https://user-images.githubusercontent.com/39648424/199224111-b96e5a73-e52b-49fa-a8b1-f80c072c1c03.png)
 
+<b>1. Найдите значение ценности состояния ![изображение](https://user-images.githubusercontent.com/39648424/199223899-b8904930-ae16-4ab2-8165-0dd30bdb2f8e.png)</b>
+
+<b>2. Найдите значение ценности состояния ![изображение](https://user-images.githubusercontent.com/39648424/199223923-3c832c0f-994d-4acf-846f-6a3c9dc6d601.png)</b>
+
+<b>3. Найдите значение ценности состояния ![изображение](https://user-images.githubusercontent.com/39648424/199223949-6e7d3d65-726c-4e50-b734-f1f6f926050e.png)</b>
+
+<b>4. Найдите значение ценности состояния ![изображение](https://user-images.githubusercontent.com/39648424/199223969-8345f3ba-f851-450c-8e40-29ed98370b28.png)</b>
