@@ -1,13 +1,13 @@
 <b>Задание 6</b>
 
 В задачах используйте реализацию логистической регрессии из библиотеки sklearn:
-
+```python
 from sklearn.linear_model import LogisticRegression
-
+```
 При обучении используйте следующие параметры: random_state = 2019, solver = 'lbfgs':
-
+```python
 LogisticRegression(random_state = 2019, solver = 'lbfgs').fit(X, y)
-
+```
 В прилагаемом файле (candy-data.csv) представлены данные, собранные путем голосования за самые лучшие (или, по крайней мере, самые популярные) конфеты Хэллоуина. Обучите модель логистической регрессии. В качестве предикторов выступают поля: chocolate, fruity, caramel, peanutyalmondy, nougat, crispedricewafer, hard, bar, pluribus, sugarpercent, pricepercent, отклик — Y.
 
 В качестве тренировочного набора данных используйте данные из файла, за иключением следующих конфет: 3 Musketeers, Almond Joy, Jawbusters. Обучите модель. 
