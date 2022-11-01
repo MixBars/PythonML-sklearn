@@ -1,4 +1,4 @@
-<b>Задание 5</b>
+# <b>Задание 5</b>
 
 Таблица содержит данные о классификации писем на «спам»/«не спам» и общее количество слов, входящих в эти группы:
 ![изображение](https://user-images.githubusercontent.com/39648424/199175618-3a1a9e9a-2ff6-4d1e-a660-574435dc51f1.png)
@@ -16,5 +16,5 @@
 
 <b>3. Вычислите ![изображение](https://user-images.githubusercontent.com/39648424/199175901-c89d009c-7385-4d73-acfc-5b9f2b4cf088.png)</b>
 
-<b>4. Вычислите вероятность ![изображение](https://user-images.githubusercontent.com/39648424/199175844-c5a57358-4517-424b-9c35-99e487a95079.png), что письмо "Free Offer Access Purchase Prize Bonus Online" является спамом.</b>
+<b>4. Вычислите вероятность ![изображение](https://user-images.githubusercontent.com/39648424/199175844-c5a57358-4517-424b-9c35-99e487a95079.png), что письмо ```Free Offer Access Purchase Prize Bonus Online``` является спамом.</b>
 
